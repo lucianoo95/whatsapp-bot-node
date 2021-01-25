@@ -1,4 +1,4 @@
-const { apiUrl, token } = require("./config.js");
+const { apiUrl, token, port } = require("./config.js");
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -64,8 +64,9 @@ app.post('/webhook', async function (req, res) {
     res.send('Ok');
 });
 
-app.listen(3001, function () {
-    console.log('Listening on port 3001');
+
+app.listen(port, function () {
+    console.log('Listening on port: ', port);
 });
 
 async function apiChatApi(method, params) {
