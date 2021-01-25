@@ -46,14 +46,14 @@ app.post('/webhook', async function (req, res) {
                 pdf: "http://domain.com/tra.pdf"
             };
             var dataFile = {
-                phone: author,
+                chatId: chatId,
                 body: files[fileType],
                 filename: `File *.${fileType}`
             };
             if (fileType == "jpg") dataFile['caption'] = "Text under the photo.";
             await apiChatApi('sendFile', dataFile);
         } else if (/ptt/.test(body)) {
-            await apiChatApi('sendAudio', { audio: "http://domain.com/tra.ogg", chatId: chatId });
+            await apiChatApi('sendPTT', { audio: "http://domain.com/tra.ogg", chatId: chatId });
         } else if (/geo/.test(body)) {
             await apiChatApi('sendLocation', { lat: 51.178843, lng: -1.826210, address: 'Stonehenge', chatId: chatId });
         } else if (/group/.test(body)) {
